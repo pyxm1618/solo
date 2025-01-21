@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>独立开发组队 - 为梦想买单</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .tech-bg {
+            position: relative;
+            overflow: hidden;
+            background: #4169E1; /* 使用纯蓝色背景 */
+        }
+        
+        /* 删除 tech-grid 相关样式和动画 */
+    </style>
+</head>
+<body>
+    <main class="min-h-screen">
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center tech-bg">
+            <div class="container mx-auto px-6 text-center text-white relative z-10">
+                <h1 class="text-5xl md:text-6xl font-bold mb-8 fade-in">独立开发组队</h1>
+                <p class="text-xl md:text-2xl mb-12 fade-in delay-200">只要敢想敢干，我们为你的梦想买单</p>
+                <button class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold text-lg hover:bg-blue-50 transition-colors fade-in delay-400">
+                    立即申请
+                </button>
+                <p class="text-sm md:text-base mt-8 max-w-3xl mx-auto text-white/80 fade-in delay-400 leading-relaxed">
+                    平台聚集大量优质的开发者、产品经理、设计师和运营人员，为好的想法组队。不同于其他远程工作平台，我们希望大家前期0薪资，利用空余时间互相搭伙组队拼搏，按照项目利润分成，快速验证市场快速变现。<br>
+                    <span class="text-xs mt-4 block opacity-60">平台预计年后上线</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12">平台特色</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="text-blue-600 mb-4">
+                            <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">零启动资金</h3>
+                        <p class="text-gray-600">0薪资，按项目收益分成</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="text-blue-600 mb-4">
+                            <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">严格审核</h3>
+                        <p class="text-gray-600">平台对人才和项目双重把关</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="text-blue-600 mb-4">
+                            <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">小额孵化</h3>
+                        <p class="text-gray-600">针对优秀项目提供资金支持</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="text-blue-600 mb-4">
+                            <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">完整评价</h3>
+                        <p class="text-gray-600">全方位人才及项目评价体系</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join Section -->
+        <section class="py-20 bg-blue-600 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-8">加入我们</h2>
+                <p class="text-xl mb-12">成为改变未来的一份子</p>
+                <button class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold text-lg hover:bg-blue-50 transition-colors">
+                    立即申请
+                </button>
+            </div>
+        </section>
+    </main>
+    
+    <!-- 在 main 标签后添加 -->
+    <div id="joinModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">申请加入</h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <form id="joinForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">选择角色</label>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <button type="button" onclick="selectRole('程序员')" class="role-btn p-3 rounded-lg border border-gray-200 hover:border-blue-600">程序员</button>
+                        <button type="button" onclick="selectRole('产品经理')" class="role-btn p-3 rounded-lg border border-gray-200 hover:border-blue-600">产品经理</button>
+                        <button type="button" onclick="selectRole('设计师')" class="role-btn p-3 rounded-lg border border-gray-200 hover:border-blue-600">设计师</button>
+                        <button type="button" onclick="selectRole('运营')" class="role-btn p-3 rounded-lg border border-gray-200 hover:border-blue-600">运营</button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">工作状态</label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button type="button" onclick="selectWorkStatus(this, '自由职业')" class="work-status-btn p-3 rounded-lg border border-gray-200 hover:border-blue-600">自由职业</button>
+                        <button type="button" onclick="selectWorkStatus(this, '上班兼职')" class="work-status-btn p-3 rounded-lg border border-gray-200 hover:border-blue-600">上班兼职</button>
+                    </div>
+                    <input type="hidden" name="workStatus" value="">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">姓名</label>
+                    <input type="text" name="name" required class="w-full p-3 border rounded-lg" placeholder="请输入您的姓名">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">联系方式</label>
+                    <input type="text" name="contact" required class="w-full p-3 border rounded-lg" placeholder="请输入手机号或邮箱">
+                </div>
+
+                <div id="skillsSection" class="hidden">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">专业技能</label>
+                    <div id="skillsContent"></div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">简历上传</label>
+                    <input type="file" name="resume" accept=".pdf,.doc,.docx" class="w-full p-3 border rounded-lg">
+                    <p class="text-sm text-gray-500 mt-1">支持 PDF、Word 格式，大小不超过 10MB</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">项目经验</label>
+                    <textarea name="experience" class="w-full p-3 border rounded-lg" rows="4" placeholder="请简述您的项目经验"></textarea>
+                </div>
+
+                <div class="text-center mb-6">
+                    <p class="text-sm text-gray-600 mb-2">扫码添加小助手，加快审核进度</p>
+                    <img src="https://placeholder.co/200x200" alt="小助手二维码" class="mx-auto w-32 h-32">
+                </div>
+
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                    提交申请
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // 打开弹窗
+        function openModal() {
+            document.getElementById('joinModal').classList.add('active');
+        }
+
+        // 关闭弹窗
+        function closeModal() {
+            document.getElementById('joinModal').classList.remove('active');
+        }
+
+        // 选择角色
+        function selectRole(role) {
+            const buttons = document.querySelectorAll('.role-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('border-blue-600', 'bg-blue-50', 'text-blue-600');
+            });
+            event.target.classList.add('border-blue-600', 'bg-blue-50', 'text-blue-600');
+            
+            const skillsSection = document.getElementById('skillsSection');
+            const skillsContent = document.getElementById('skillsContent');
+            
+            skillsSection.classList.remove('hidden');
+            
+            const skillsHTML = {
+                '程序员': `
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">开发方向</label>
+                        <div class="grid grid-cols-3 gap-4 mb-4">
+                            <button type="button" onclick="selectDevType(this, '前端')" class="dev-type-btn p-2 rounded-lg border border-gray-200 hover:border-blue-600">前端</button>
+                            <button type="button" onclick="selectDevType(this, '后端')" class="dev-type-btn p-2 rounded-lg border border-gray-200 hover:border-blue-600">后端</button>
+                            <button type="button" onclick="selectDevType(this, '全栈')" class="dev-type-btn p-2 rounded-lg border border-gray-200 hover:border-blue-600">全栈</button>
+                        </div>
+                        <input type="hidden" name="devType" value="">
+                    </div>
+                    <input type="text" name="techStack" class="w-full p-3 border rounded-lg mb-4" placeholder="技术栈，如：React/Node.js">
+                    <input type="text" name="github" class="w-full p-3 border rounded-lg" placeholder="Github 链接">
+                `,
+                '产品经理': `
+                    <input type="text" name="direction" class="w-full p-3 border rounded-lg mb-4" placeholder="产品方向，如：ToB/ToC">
+                    <input type="text" name="portfolio" class="w-full p-3 border rounded-lg" placeholder="作品集链接">
+                `,
+                '设计师': `
+                    <input type="text" name="tools" class="w-full p-3 border rounded-lg mb-4" placeholder="设计工具，如：Figma/Sketch">
+                    <input type="text" name="portfolio" class="w-full p-3 border rounded-lg" placeholder="作品集链接">
+                `,
+                '运营': `
+                    <input type="text" name="expertise" class="w-full p-3 border rounded-lg" placeholder="擅长领域，如：内容运营/用户运营">
+                `
+            };
+            
+            skillsContent.innerHTML = skillsHTML[role];
+        }
+
+        // 表单提交
+        document.getElementById('joinForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            console.log('表单数据：', Object.fromEntries(formData));
+            alert('申请已提交，我们会在3个工作日内联系您！');
+            closeModal();
+        });
+
+        // 绑定所有打开弹窗的按钮
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.trim() === '立即加入' || button.textContent.trim() === '立即申请') {
+                button.addEventListener('click', openModal);
+            }
+        });
+    </script>
+    </main>
+    
+    <!-- Footer Section -->
+    <footer class="bg-gray-100 py-6">
+        <div class="container mx-auto px-6 text-center text-gray-600 text-sm">
+            <div class="flex items-center justify-center space-x-2">
+                <a href="https://beian.miit.gov.cn" target="_blank" class="hover:text-gray-900 h-5 flex items-center">
+                    京ICP备2024069371号-3
+                </a>
+                <span>|</span>
+                <a href="https://beian.mps.gov.cn/#/query/webSearch" target="_blank" class="hover:text-gray-900 h-5 flex items-center">
+                    <img src="/assets/beian.png" alt="公安备案图标" class="h-4 mr-1">
+                    京公网安备11011402054501号
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
