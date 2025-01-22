@@ -6,8 +6,15 @@ export default async function handler(req, res) {
     }
 
     try {
+        const data = req.body;
+        console.log('接收到的数据：', data);
+        
         // 这里添加你的数据处理逻辑
-        console.log('收到的数据：', req.body);
+        const { error } = await supabase
+            .from('applications')
+            .insert([data]);
+
+        if (error) throw error;
         
         return res.status(200).json({ 
             success: true, 
