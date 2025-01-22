@@ -290,7 +290,7 @@
             });
 
             try {
-                const response = await fetch('https://aiguess.cn/api/upload', {  // 修改为 Vercel 生产环境地址
+                const response = await fetch('/api/upload', {  // 使用相对路径
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
