@@ -1,5 +1,8 @@
 import { supabase } from '../../lib/supabase';
 
+// 临时存储提交的数据
+const submissions = [];
+
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: '只支持 POST 请求' });
@@ -9,12 +12,8 @@ export default async function handler(req, res) {
         const data = req.body;
         console.log('接收到的数据：', data);
         
-        // 这里添加你的数据处理逻辑
-        const { error } = await supabase
-            .from('applications')
-            .insert([data]);
-
-        if (error) throw error;
+        // 临时存储数据
+        submissions.push(data);
         
         return res.status(200).json({ 
             success: true, 
