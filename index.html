@@ -284,7 +284,8 @@
             });
 
             try {
-                const response = await fetch('/api/upload', {  // 使用相对路径
+                // 使用相对路径，而不是完整域名
+                const response = await fetch('/api/upload', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
