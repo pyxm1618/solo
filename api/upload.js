@@ -12,20 +12,11 @@ export default async function handler(req, res) {
         if (!data.name || !data.contact || !data.role) {
             return res.status(400).json({
                 success: false,
-                error: '缺少必要信息'
+                error: '请填写完整信息'
             });
         }
 
-        // 检查 Supabase 连接
-        if (!supabase) {
-            console.error('Supabase 客户端未初始化');
-            return res.status(500).json({
-                success: false,
-                error: '数据库连接失败'
-            });
-        }
-
-        const { error } = await supabase
+        const { data: result, error } = await supabase
             .from('applications')
             .insert([data]);
 
@@ -33,19 +24,19 @@ export default async function handler(req, res) {
             console.error('数据库错误：', error);
             return res.status(500).json({
                 success: false,
-                error: error.message
+                error: '数据保存失败'
             });
         }
         
         return res.status(200).json({ 
             success: true, 
-            message: '申请已提交成功' 
+            message: '申请已提交成功'
         });
     } catch (error) {
-        console.error('提交失败：', error);
+        console.error('服务器错误：', error);
         return res.status(500).json({ 
             success: false,
-            error: error.message || '服务器处理错误'
+            error: '服务器处理错误'
         });
     }
 }
