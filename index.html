@@ -290,7 +290,7 @@
             });
 
             try {
-                const response = await fetch('https://aiguess.cn/api/upload', {  // 修改为正确的 API 地址
+                const response = await fetch('/api/upload', {  // 修改为相对路径
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
