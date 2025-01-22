@@ -7,13 +7,21 @@ export default async function handler(req, res) {
 
     try {
         const data = req.body;
-        console.log('收到的数据：', data);  // 添加日志
+        console.log('收到的数据：', data);
 
-        // 确保必要字段存在
         if (!data.name || !data.contact || !data.role) {
             return res.status(400).json({
                 success: false,
                 error: '缺少必要信息'
+            });
+        }
+
+        // 检查 Supabase 连接
+        if (!supabase) {
+            console.error('Supabase 客户端未初始化');
+            return res.status(500).json({
+                success: false,
+                error: '数据库连接失败'
             });
         }
 
@@ -22,8 +30,11 @@ export default async function handler(req, res) {
             .insert([data]);
 
         if (error) {
-            console.error('数据库错误：', error);  // 添加错误日志
-            throw error;
+            console.error('数据库错误：', error);
+            return res.status(500).json({
+                success: false,
+                error: error.message
+            });
         }
         
         return res.status(200).json({ 
