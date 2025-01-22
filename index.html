@@ -148,55 +148,11 @@
                 </button>
             </div>
             
-            <form id="joinForm" class="space-y-6">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">选择角色</label>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <button type="button" onclick="selectRole('程序员')" class="role-btn p-3 rounded-lg border border-gray-200 hover:border-blue-600">程序员</button>
-                        <button type="button" onclick="selectRole('产品经理')" class="role-btn p-3 rounded-lg border border-gray-200 hover:border-blue-600">产品经理</button>
-                        <button type="button" onclick="selectRole('设计师')" class="role-btn p-3 rounded-lg border border-gray-200 hover:border-blue-600">设计师</button>
-                        <button type="button" onclick="selectRole('运营')" class="role-btn p-3 rounded-lg border border-gray-200 hover:border-blue-600">运营</button>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">工作状态</label>
-                    <div class="grid grid-cols-2 gap-4">
-                        <button type="button" onclick="selectWorkStatus(this, '自由职业')" class="work-status-btn p-3 rounded-lg border border-gray-200 hover:border-blue-600">自由职业</button>
-                        <button type="button" onclick="selectWorkStatus(this, '上班兼职')" class="work-status-btn p-3 rounded-lg border border-gray-200 hover:border-blue-600">上班兼职</button>
-                    </div>
-                    <input type="hidden" name="workStatus" value="">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">姓名</label>
-                    <input type="text" name="name" required class="w-full p-3 border rounded-lg" placeholder="请输入您的姓名">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">联系方式</label>
-                    <input type="text" name="contact" required class="w-full p-3 border rounded-lg" placeholder="请输入手机号或邮箱">
-                </div>
-
-                <div id="skillsSection" class="hidden">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">专业技能</label>
-                    <div id="skillsContent"></div>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">项目经验</label>
-                    <textarea name="experience" class="w-full p-3 border rounded-lg" rows="4" placeholder="请简述您的项目经验"></textarea>
-                </div>
-
-                <div class="text-center mb-6">
-                    <p class="text-sm text-gray-600 mb-2">扫码添加小助手，加快审核进度</p>
-                    <img src="./images/assistant-qrcode.jpg" alt="小助手二维码" class="mx-auto w-32 h-32">
-                </div>
-
-                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
-                    提交申请
-                </button>
-            </form>
+            <div class="text-center py-8">
+                <h4 class="text-xl font-semibold mb-6">扫码添加小助手，开启你的创业之旅</h4>
+                <img src="./images/assistant-qrcode.jpg" alt="小助手二维码" class="mx-auto w-48 h-48">
+                <p class="text-sm text-gray-600 mt-4">添加后请说明您想要申请的角色</p>
+            </div>
         </div>
     </div>
 
@@ -210,105 +166,6 @@
         function closeModal() {
             document.getElementById('joinModal').classList.remove('active');
         }
-
-        // 选择角色
-        function selectRole(role) {
-            const buttons = document.querySelectorAll('.role-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('border-blue-600', 'bg-blue-50', 'text-blue-600');
-            });
-            event.target.classList.add('border-blue-600', 'bg-blue-50', 'text-blue-600');
-            
-            const skillsSection = document.getElementById('skillsSection');
-            const skillsContent = document.getElementById('skillsContent');
-            
-            skillsSection.classList.remove('hidden');
-            
-            const skillsHTML = {
-                '程序员': `
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">开发方向</label>
-                        <div class="grid grid-cols-3 gap-4 mb-4">
-                            <button type="button" onclick="selectDevType(this, '前端')" class="dev-type-btn p-2 rounded-lg border border-gray-200 hover:border-blue-600">前端</button>
-                            <button type="button" onclick="selectDevType(this, '后端')" class="dev-type-btn p-2 rounded-lg border border-gray-200 hover:border-blue-600">后端</button>
-                            <button type="button" onclick="selectDevType(this, '全栈')" class="dev-type-btn p-2 rounded-lg border border-gray-200 hover:border-blue-600">全栈</button>
-                        </div>
-                        <input type="hidden" name="devType" value="">
-                    </div>
-                    <input type="text" name="techStack" class="w-full p-3 border rounded-lg mb-4" placeholder="技术栈，如：React/Node.js">
-                    <input type="text" name="github" class="w-full p-3 border rounded-lg" placeholder="Github 链接">
-                `,
-                '产品经理': `
-                    <input type="text" name="direction" class="w-full p-3 border rounded-lg mb-4" placeholder="产品方向，如：ToB/ToC">
-                    <input type="text" name="portfolio" class="w-full p-3 border rounded-lg" placeholder="作品集链接">
-                `,
-                '设计师': `
-                    <input type="text" name="tools" class="w-full p-3 border rounded-lg mb-4" placeholder="设计工具，如：Figma/Sketch">
-                    <input type="text" name="portfolio" class="w-full p-3 border rounded-lg" placeholder="作品集链接">
-                `,
-                '运营': `
-                    <input type="text" name="expertise" class="w-full p-3 border rounded-lg" placeholder="擅长领域，如：内容运营/用户运营">
-                `
-            };
-            
-            skillsContent.innerHTML = skillsHTML[role];
-        }
-
-        // 添加工作状态选择函数
-        function selectWorkStatus(button, status) {
-            const buttons = document.querySelectorAll('.work-status-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('border-blue-600', 'bg-blue-50', 'text-blue-600');
-            });
-            button.classList.add('border-blue-600', 'bg-blue-50', 'text-blue-600');
-            document.querySelector('input[name="workStatus"]').value = status;
-        }
-
-        // 添加开发类型选择函数
-        function selectDevType(button, type) {
-            const buttons = document.querySelectorAll('.dev-type-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('border-blue-600', 'bg-blue-50', 'text-blue-600');
-            });
-            button.classList.add('border-blue-600', 'bg-blue-50', 'text-blue-600');
-            document.querySelector('input[name="devType"]').value = type;
-        }
-
-        // 添加表单提交处理
-        document.getElementById('joinForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
-
-            try {
-                // 使用相对路径，而不是完整域名
-                const response = await fetch('/api/upload', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const result = await response.json();
-                if (result.success) {
-                    alert('申请提交成功！');
-                    closeModal();
-                } else {
-                    alert('提交失败：' + result.error);
-                }
-            } catch (error) {
-                console.error('提交错误：', error);
-                alert('提交失败，请稍后重试');
-            }
-        });
 
         // 绑定所有打开弹窗的按钮
         document.querySelectorAll('button').forEach(button => {
