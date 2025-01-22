@@ -10,10 +10,13 @@ export default async function handler(req, res) {
 
     try {
         const data = req.body;
+        // 记录提交时间
+        data.submitTime = new Date().toISOString();
         console.log('接收到的数据：', data);
         
         // 临时存储数据
         submissions.push(data);
+        console.log('当前申请总数：', submissions.length);
         
         return res.status(200).json({ 
             success: true, 
